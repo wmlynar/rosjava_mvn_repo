@@ -1,3 +1,37 @@
+# Information
+
+This repository holds maven repo for project https://github.com/wmlynar/rosjava_core/ which contain fix for xmlrpc multicall issue
+
+This is how the repository was created
+
+Forked rosjava and rosjava_mvn_repo projects
+
+```
+cd ~
+mkdir -p rosjava_core_ws/src
+cd rosjava_core_ws/src
+git clone https://github.com/wmlynar/rosjava_core/
+cd ..
+catkin_make
+source devel/setup.bash
+cd devel/share/maven/
+git clone https://github.com/wmlynar/rosjava_mvn_repo .
+cd ../../..
+cd src/rosjava_core/
+pico package.xml  # update version <version>0.3.5-wmlynar</version>
+./gradlew
+./gradlew install
+```
+
+For local testing one can use following code in the pom.xml file
+
+```
+		<repository>
+			<id>local-maven-repo</id>
+			<url>file:///home/[username]/rosjava_core_ws/devel/share/maven</url>
+		</repository>
+```
+
 # The RosJava Maven Repo
 
 Maven artifact repository for rosjava dependencies and builds.
